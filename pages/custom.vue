@@ -1,4 +1,4 @@
-<script setup>
+<script>
 definePageMeta({
   layout: "custom",
 });

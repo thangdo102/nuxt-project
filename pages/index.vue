@@ -5,3 +5,8 @@
     <img src="@/assets/image.png" alt="" />
   </div>
 </template>
+
+<script>
+const { sayHello } = useUtils();
+sayHello();
+</script>
