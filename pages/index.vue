@@ -1,3 +1,13 @@
+<script setup lang="ts">
+//Composables
+// const { sayHello } = useUtils();
+// sayHello();
+
+//Plugin
+const { $hello } = useNuxtApp();
+$hello("Thang Pan");
+</script>
+
 <template>
   <div class="MainPage">
     <p>Main Page</p>
@@ -5,8 +15,3 @@
     <img src="@/assets/image.png" alt="" />
   </div>
 </template>
-
-<script>
-const { sayHello } = useUtils();
-sayHello();
-</script>
