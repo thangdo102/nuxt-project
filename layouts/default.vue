@@ -1,6 +1,18 @@
 <template>
-  <div class="DefaultLayout h-screen bg-slate-900 text-white">
-    <p>Default Layout</p>
-    <slot />
-  </div>
+  <v-layout>
+    <v-main>
+      <TheHeader />
+        <slot />
+      </v-main>
+  </v-layout>
 </template>
+
+<script setup>
+import TheHeader from '~/components/molecules/TheHeader.vue';
+</script>
+
+<style>
+.slot{
+
+}
+</style>

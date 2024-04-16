@@ -1,8 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // import { resolve } from "path";
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  build: {
+    transpile: ["vuetify"],
+  },
   alias: {
     // "@": resolve(__dirname, "/"),
     assets: "/<rootDir>/assets",
@@ -14,5 +18,36 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ["@nuxt/image"],
+  modules: [
+    "@nuxt/image",
+    "@pinia/nuxt",
+    (_options, nuxt) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) => {
+        config.plugins.push(vuetify({ autoImport: true }));
+      });
+    },
+  ],
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+    define: {
+      'process.env.DEBUG': false,
+      __VUE_I18N_FULL_INSTALL__: false,
+      __VUE_I18N_LEGACY_API__: false,
+      __INTLIFY_PROD_DEVTOOLS__: false,
+    },
+    server: {
+      fs: {
+        allow: ['..'],
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "sass:math"; @import "@/assets/variables.scss";',
+        },
+      },
+    },
+  },
 });

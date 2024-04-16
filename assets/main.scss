@@ -1,7 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './variables.scss';
 
 body {
-  color: red;
+    // background-color: $dark20;
+}
+
+.page-home-wrapper {
+    overflow-y: auto;
+    width: 70%;
+    align-self: center;
+    margin-top: 40px;
+
+    @include mq-down(sm) {
+      padding: calc($padding-x/2);
+    }
+  }
+
+.v-application__wrap{
+    min-height: 100% !important;
 }

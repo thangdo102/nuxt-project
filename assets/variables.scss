@@ -1,0 +1,219 @@
+$body-color: #fafafa;
+$border-light-color: #e3e3e3;
+$border-color: #c8c8c8;
+$border-hover-color: #656565;
+$gray-btn-hover: rgba(0, 0, 0, 0.06);
+$btn-icon-color: #656565;
+$btn-icon-color-hover: #232323;
+$base_white: #fff;
+$placeholder-color: #656565;
+$paid-badge: rgba(0, 0, 0, 0.1);
+$coming-soon-bg: rgba(0, 0, 0, 0.02);
+$text-black: #232323;
+$footer-height: 96px;
+$default-line-height: 1.4;
+
+$square-btn-length: 40px;
+$square-btn-length-sm: 32px;
+$dialog-footer-height: 96px;
+
+$btn-light: $body-color;
+
+$white: #ffffff;
+$white09: rgba($white, 0.9);
+
+$dark: #2c2c2c;
+$dark05: #f4f4f4;
+$dark10: #eaeaea;
+$dark20: #d5d5d5;
+$dark30: #c0c0c0;
+$dark40: #ababab;
+$dark50: #969696;
+$dark60: #808080;
+$dark70: #6b6b6b;
+$dark80: #565656;
+$dark90: #414141;
+$dark110: #282828;
+$dark120: #232323;
+$dark130: #1f1f1f;
+$dark140: #1a1a1a;
+$dark150: #161616;
+$dark160: #121212;
+$dark170: #0d0d0d;
+$dark180: #090909;
+$dark190: #040404;
+$dark195: #020202;
+
+$blue: #2d9cdb; //json: [0.1765,0.6118,0.8588,1]
+$blue05: rgb(150, 205, 237); //json: [0.588,0.804,0.929,1]
+// $blue05: #f5fafd;
+$blue10: #eaf5fb;
+$blue20: #d5ebf8;
+$blue30: #c0e1f4;
+$blue40: #abd7f1;
+$blue50: #96ceed;
+$blue60: #81c4e9;
+$blue70: #6cbae6;
+$blue80: #57b0e2;
+$blue90: #42a6df;
+$blue110: #298cc5;
+$blue120: #247daf;
+$blue130: #1f6d99;
+$blue140: #1b5e83;
+$blue150: #174e6e;
+$blue160: #123e58;
+$blue170: #0e2f42;
+$blue180: #091f2c;
+$blue190: #041016;
+$blue195: #02080b;
+
+$red: #f43474; //json: [0.9569,0.2039,0.4549,1]
+$red05: #fef5f8;
+$red10: #feebf1;
+$red20: #fdd6e3;
+$red30: #fcc2d5;
+$red40: #fbaec7;
+$red50: #fa9aba;
+$red60: #f885ac;
+$red70: #f7719e;
+$red80: #f65d90;
+$red90: #f54882;
+$red110: #dc2f68;
+$red120: #c32a5d;
+$red130: #ab2451;
+$red140: #921f46;
+$red150: #7a1a3a;
+$red160: #62152e;
+$red170: #491023;
+$red180: #310a17;
+$red190: #18050c;
+$red195: #0c0306;
+
+$yellow: #ecb22e;
+
+$light: #fcfcfc;
+$smoke: #f5f4f4;
+$lightgrey: #aba9a9;
+$grey: #636363;
+$black: #000000;
+$green: #487f52;
+
+$facebook: #1a77f2;
+$line: #02b902;
+$twitter: #1ea1f1;
+
+$height-header: 64px;
+$height-btn: 44px;
+$border-radius: calc($height-btn / 2);
+$box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.08);
+$box-shadow-card: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+$box-shadow-hover: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+$width-profile-aside: 216px;
+
+$padding-x: 32px;
+$doc-default-margin: 16px;
+
+$height-chat-status: 31px;
+$margin-bottom-chat-status: 6px;
+
+@mixin dark-gradient {
+  background-image: linear-gradient(to bottom, #505050 0%, black 100%);
+
+  // background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+  // background-blend-mode: multiply;
+
+  // background-image: linear-gradient(to right, $dark 0%, $black 100%);
+  // background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+@mixin mq() {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin contentWidth() {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  @include mq() {
+    width: 100%;
+  }
+}
+
+// mtsm-todo use ishii ver
+$sm-point: 600px;
+$md-point: 960px;
+$lg-point: 1920px;
+$xl-point: 2560px;
+
+$breakpoint-up: (
+  'sm': 'screen and (min-width: #{$sm-point})',
+  'md': 'screen and (min-width: #{$md-point})',
+  'lg': 'screen and (min-width: #{$lg-point})',
+  'xl': 'screen and (min-width: #{$xl-point})',
+) !default;
+
+$breakpoint-down: (
+  'sm': 'screen and (max-width: #{$sm-point - 1})',
+  'md': 'screen and (max-width: #{$md-point - 1})',
+  'lg': 'screen and (max-width: #{$lg-point - 1})',
+  'xl': 'screen and (max-width: #{$xl-point - 1})',
+) !default;
+
+$breakpoint-only: (
+  'sm': 'screen and (max-width: #{$sm-point - 1})',
+  'md-sm': 'screen and (max-width: #{$md-point - 1}) and (min-width: #{$sm-point})',
+  'lg-md': 'screen and (max-width: #{$lg-point - 1}) and (min-width: #{$md-point})',
+  'xl-lg': 'screen and (max-width: #{$xl-point - 1}) and (min-width: #{$lg-point})',
+  'xl': 'screen and (min-width: #{$xl-point})',
+) !default;
+
+@mixin mq-up($breakpoint: lg) {
+  @media #{map-get($breakpoint-up, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-down($breakpoint: lg) {
+  @media #{map-get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-only($breakpoint: md-sm) {
+  @media #{map-get($breakpoint-only, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin white-card {
+  box-shadow: $box-shadow;
+  background-color: $white;
+  padding: $padding-x;
+  border-radius: $border-radius;
+  @include mq-down(md) {
+    padding: 16px;
+  }
+}
+
+@mixin element-hover {
+  border-radius: $border-radius;
+  border: 1px solid $lightgrey;
+  background-color: $white;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  }
+}
