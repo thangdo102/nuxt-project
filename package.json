@@ -17,6 +17,7 @@
     "firebase": "^10.9.0",
     "firebaseui": "^6.1.0",
     "nuxt": "^3.10.3",
+    "nuxt-snackbar": "^1.0.4",
     "pinia": "^2.1.7",
     "sass": "^1.71.1",
     "vue": "^3.4.19",

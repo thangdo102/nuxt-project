@@ -1,15 +1,36 @@
-import { collection, addDoc, query, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  query,
+  getDocs,
+  where,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { firestore } from "./firebase";
-import type { CarType } from "~/types/types";
+import type { Car } from "~/types/types";
 
-export const getCities = async () => {
-  const citiesRef = collection(firestore, "cities");
-  const q = query(citiesRef);
-  return (await getDocs(q)).docs.map((data) => data.data());
-};
-
-export const addNewCar = async (car: CarType) => {
+export const addNewCar = async (car: Car) => {
   const carRef = collection(firestore, "cars");
   const res = await addDoc(carRef, car);
-  return res.id
+  return res.id;
+};
+
+export const getCars = async () => {
+  const carRef = collection(firestore, "cars");
+  const q = query(carRef);
+  return (await getDocs(q)).docs.map((data) => {
+    if (data.exists()) return { id: data.id, ...data.data() };
+    else return [];
+  });
+};
+
+export const getCarDetail = async (carId) => {
+  const carRef = doc(firestore, "cars", carId);
+  const carSnap = await getDoc(carRef);
+  if (carSnap.exists()) {
+    return carSnap.data();
+  } else {
+    return null;
+  }
 };

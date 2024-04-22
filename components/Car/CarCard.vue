@@ -1,38 +1,43 @@
 <template>
-  <div class="car-card">
-    <div class="car-image">
-      <img
-        src="https://images2.thanhnien.vn/zoom/700_438/Uploaded/chicuong/2021_12_13/porsche-911-turbo-5-7236.jpeg"
-      />
-    </div>
+  <a>
+    <div class="car-card">
+      <div class="car-image">
+        <img
+          src="https://images2.thanhnien.vn/zoom/700_438/Uploaded/chicuong/2021_12_13/porsche-911-turbo-5-7236.jpeg"
+        />
+      </div>
 
-    <div class="car-delivery">
-      <CarTagItem text="Số tự động" />
-      <CarTagItem text="Giao xe tận nơi" />
-    </div>
+      <div class="car-delivery">
+        <CarTagItem :text="car.type" />
+        <CarTagItem :text="car.receiveType" />
+      </div>
 
-    <p class="car-name">PORSE 911 2024</p>
+      <p class="car-name">{{ car.name }} {{ car.manufactureYear }}</p>
 
-    <div class="car-position">
-      <v-icon :icon="mdiMapMarker" />
-      <p class="address">Quận Nam Từ Liêm, Hà Nội</p>
-    </div>
+      <div class="car-position">
+        <v-icon :icon="mdiMapMarker" />
+        <p class="address">Quận Nam Từ Liêm, Hà Nội</p>
+      </div>
 
-    <div class="line-page">
-      
-    </div>
+      <AtomsTheLiner />
 
-    <div class="car-card-bottom">
-      <p>review</p>
-      <p class="price">
-        <span>615k</span> / ngày
-      </p>
+      <div class="car-card-bottom">
+        <p>review</p>
+        <p class="price">
+          <span>{{ car.pricePerDay }}K</span> / ngày
+        </p>
+      </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script setup lang="ts">
 import { mdiMapMarker } from "@mdi/js";
+import type { Car } from "~/types/types";
+
+const props = defineProps<{
+  car: Car;
+}>();
 </script>
 
 <style scoped lang="scss">
@@ -41,6 +46,7 @@ import { mdiMapMarker } from "@mdi/js";
   border: 1px solid #d5d5d5;
   padding: 16px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .car-image {
@@ -73,23 +79,18 @@ import { mdiMapMarker } from "@mdi/js";
   display: flex;
   align-items: center;
   gap: 5px;
-  i{
+  i {
     font-size: 15px;
   }
 }
 
-.line-page{
-  border-top: 1px solid #d5d5d5;
-  margin: 12px 0;
-}
-
-.car-card-bottom{
+.car-card-bottom {
   display: flex;
   justify-content: space-between;
   .price {
-      color: gray;
-      font-size: 13px;
-    span{
+    color: gray;
+    font-size: 13px;
+    span {
       color: #5fcf86;
       font-weight: 800;
       font-size: 20px;

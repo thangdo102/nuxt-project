@@ -7,7 +7,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { firestore } from "./firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 export const getUser = async (uid) => {
   const userDoc = await getDoc(doc(firestore, "users", uid));
@@ -22,5 +22,4 @@ export const createUser = async () => {
   const usersCollectionRef = collection(firestore, "users");
   const docRef = await addDoc(usersCollectionRef, data);
 };
-
 

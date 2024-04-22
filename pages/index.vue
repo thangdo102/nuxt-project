@@ -1,45 +1,30 @@
 <script setup lang="ts">
-import { Timestamp } from "firebase/firestore";
-import { addNewCar } from "~/plugins/src/car";
+import { getCars } from "~/plugins/src/car";
 
-const fetchData = async () => {
-  const { data } = await useFetch("/api/test");
-  return data;
+const listCars = ref(null);
+const router = useRouter();
+
+const fetchListCars = async () => {
+  const res = await getCars();
+  listCars.value = res;
 };
 
-const addCar = async () => {
-  const userState = useLoginUser().state;
-  console.log(userState);
+onMounted(() => fetchListCars());
 
-  if (userState.value) {
-    const res = await addNewCar({
-      id: "z",
-      name: "BMW",
-      color: "Black",
-      manufactureYear: Timestamp.now(),
-      price: 0,
-      city: "HN",
-      owner: {
-        id: userState.value.uid,
-        name: userState.value.displayName,
-        age: 35,
-        address: "SocSon-HN",
-      },
-    });
-    console.log("SUCCESS", res);
-  } else {
-    console.log("You need to login first!");
-  }
+const onClickCarDetail = (carId) => {
+  router.push(`/car/${carId}`);
 };
+
 </script>
 
 <template>
   <div class="page-home-wrapper">
-    <div class="list-car">
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
+    <div class="list-car" v-if="listCars">
+      <CarCard
+        v-for="car in listCars"
+        :car="car"
+        @click="onClickCarDetail(car.id)"
+      />
     </div>
   </div>
 </template>
@@ -52,4 +37,3 @@ const addCar = async () => {
   gap: 30px;
 }
 </style>
-

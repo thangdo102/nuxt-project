@@ -17,3 +17,13 @@ const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);
 export const auth = getAuth(app);
 
+
+export const getCurrentUser = (): Promise<any> => {
+  return new Promise((resolve) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      unsubscribe()
+      if (user) resolve(user)
+      else resolve(null)
+    })
+  })
+}
