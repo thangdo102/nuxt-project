@@ -1,8 +1,13 @@
-import { addNewCar } from "~/plugins/src/car";
+import {
+  addNewCar,
+  deleteCar,
+  getCarDetail,
+  updateCar,
+} from "~/plugins/src/car";
 import { getCurrentUser } from "~/plugins/src/firebase";
 import type { Car } from "~/types/types";
 
-export const useCar = () => {
+export const useCar = async () => {
   const route = useRoute();
   const router = useRouter();
   const carId = route.params.carId as string;
@@ -31,36 +36,62 @@ export const useCar = () => {
 
   const mounted = async () => {
     const user = await getCurrentUser();
-    car.owner = {
-      id: user.uid,
-      name: user.displayName,
-      address: null,
-    };
+    if (user) {
+      car.owner = {
+        id: user.uid,
+        name: user.displayName,
+        address: null,
+      };
+    }
   };
 
   const saveCar = async () => {
-    if (
-      !car.color ||
-      !car.convenient ||
-      !car.fuel ||
-      !car.introduction ||
-      !car.manufactureYear ||
-      !car.name ||
-      !car.pricePerDay ||
-      !car.receiveType ||
-      !car.seat ||
-      !car.type ||
-      !car.wastedFuel
-    ) {
-      return;
-    }
     try {
-      await addNewCar(car);
+      if (carId) {
+        await updateCar(carId, car);
+        snackbar.add({
+          type: "success",
+          text: "Succesfully!",
+        });
+      } else {
+        if (
+          !car.color ||
+          !car.convenient ||
+          !car.fuel ||
+          !car.introduction ||
+          !car.manufactureYear ||
+          !car.name ||
+          !car.pricePerDay ||
+          !car.receiveType ||
+          !car.seat ||
+          !car.type ||
+          !car.wastedFuel
+        ) {
+          return;
+        }
+
+        await addNewCar(car);
+        snackbar.add({
+          type: "success",
+          text: "Succesfully!",
+        });
+        router.push("/");
+      }
+    } catch (error) {
+      snackbar.add({
+        type: "error",
+        text: "Error",
+      });
+    }
+  };
+
+  const removeCar = async (carId: string) => {
+    try {
+      await deleteCar(carId);
       snackbar.add({
         type: "success",
         text: "Succesfully!",
       });
-      router.push("/");
     } catch (error) {
       snackbar.add({
         type: "error",
@@ -72,6 +103,7 @@ export const useCar = () => {
   return {
     car,
     saveCar,
+    removeCar,
     mounted,
   };
 };

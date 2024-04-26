@@ -5,6 +5,7 @@
       <p style="align-self: center">
         {{ userState.displayName }}
       </p>
+      <AtomsTheButton text="Xe của tôi" @click="router.push('/my-car')" />
       <AtomsTheButton text="Thêm xe cho thuê" @click="router.push('/add-new-car')" />
       <AtomsTheButton text="Logout" @click="logout" />
     </div>
