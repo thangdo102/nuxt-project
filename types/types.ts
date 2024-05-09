@@ -17,12 +17,22 @@ export type Car = {
   seat: number;
   fuel: FuelType;
   wastedFuel: number;
-  introduction: string
-  convenient: Array<string>
+  introduction: string;
+  convenient: Array<string>;
 };
 
 export type User = {
   id: string;
   name: string;
   address: string;
+};
+
+export type RentalCar = {
+  carId: string;
+  car: Car;
+  renter: User;
+  totalRentDay: number;
+  totalMoney: number;
+  from: any;
+  to: any;
 };

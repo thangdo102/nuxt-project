@@ -3,8 +3,8 @@
     <p class="car-name">{{ car.name }} {{ car.manufactureYear }} {{ car.color }}</p>
     <p class="car-location">{{car.city}}</p>
     <div>
-      <CarTagItem :text="car.type" />
-      <CarTagItem :text="car.receiveType" />
+      <CarTagItem :text="car.type" color="yellow" />
+      <CarTagItem :text="car.receiveType" color="blue" />
     </div>
   </div>
 </template>

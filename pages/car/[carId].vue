@@ -13,9 +13,16 @@
         <AtomsTheLiner />
 
         <CarIntroduction :carIntro="car.introduction"/>
+
+        <AtomsTheLiner />
+
+        <CarExtension :car="car"/>
+
       </div>
 
-      <div class="car-info-right">10000K</div>
+      <div class="car-info-right">
+          <CarPrice :carId="carId" :car="car"/>
+      </div>
     </div>
   </div>
 </template>
@@ -33,7 +40,6 @@ await getCarDetail(carId).then((res) =>{
   car.value = res
 })
 
-
 </script>
 
 <style lang="scss" scoped>
@@ -47,7 +53,11 @@ await getCarDetail(carId).then((res) =>{
 }
 
 .car-info-right {
-  background-color: bisque;
   width: 40%;
+  height: 100%;
+  padding: 30px 25px;
+  border: 1px solid #f4f4f4;
+  background-color: #f7fbff;
+  border-radius: 10px;
 }
 </style>

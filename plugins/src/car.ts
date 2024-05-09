@@ -10,7 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { firestore, getCurrentUser } from "./firebase";
-import type { Car } from "~/types/types";
+import type { Car, RentalCar } from "~/types/types";
 
 export const addNewCar = async (car: Car) => {
   const carRef = collection(firestore, "cars");
@@ -54,4 +54,10 @@ export const updateCar = async (carId, newUpdate): Promise<any> => {
 export const deleteCar = async (carId: string) => {
   const carRef = doc(firestore, "cars", carId);
   return await deleteDoc(carRef);
+};
+
+export const rentCar = async (carInfo: RentalCar) => {
+  const rentalListRef = collection(firestore, "rentalList");
+  const res = await addDoc(rentalListRef, carInfo);
+  return res.id
 };

@@ -8,8 +8,8 @@
       </div>
 
       <div class="car-delivery">
-        <CarTagItem :text="car.type" />
-        <CarTagItem :text="car.receiveType" />
+        <CarTagItem :text="car.type" color="yellow" />
+        <CarTagItem :text="car.receiveType" color="blue" />
       </div>
 
       <p class="car-name">{{ car.name }} {{ car.manufactureYear }}</p>
@@ -22,7 +22,7 @@
       <AtomsTheLiner />
 
       <div class="car-card-bottom">
-        <p>review</p>
+        <p style="font-weight: 700;">{{ car.owner.name }}</p>
         <p class="price">
           <span>{{ car.pricePerDay }}K</span> / ngày
         </p>
