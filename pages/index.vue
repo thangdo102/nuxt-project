@@ -6,6 +6,7 @@ const router = useRouter();
 
 const fetchListCars = async () => {
   const res = await getCars();
+  console.log(res);
   listCars.value = res;
 };
 

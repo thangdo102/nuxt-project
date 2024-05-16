@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /cars/{carid}/car_images/{filename} {
+      allow read;
+      allow write;
+    }
+
+  }
+}

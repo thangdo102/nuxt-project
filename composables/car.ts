@@ -32,6 +32,7 @@ export const useCar = async () => {
     wastedFuel: null,
     introduction: null,
     convenient: null,
+    carImgId: null,
   });
 
   const mounted = async () => {
@@ -45,10 +46,10 @@ export const useCar = async () => {
     }
   };
 
-  const saveCar = async () => {
+  const saveCar = async (carImgId: string) => {
     try {
       if (carId) {
-        await updateCar(carId, car);
+        await updateCar(carId, { ...car, carImgId: carImgId });
         snackbar.add({
           type: "success",
           text: "Succesfully!",
@@ -70,7 +71,7 @@ export const useCar = async () => {
           return;
         }
 
-        await addNewCar(car);
+        await addNewCar({ ...car, carImgId: carImgId });
         snackbar.add({
           type: "success",
           text: "Succesfully!",

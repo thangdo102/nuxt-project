@@ -114,6 +114,45 @@
             clearable
           >
           </v-combobox>
+
+          <div
+            @dragover.prevent
+            @drop.prevent="onDrop"
+            @click="documentInput.click()"
+          >
+            <div
+              style="
+                border: 1px solid black;
+                width: fit-content;
+                border-radius: 20px;
+                padding: 20px;
+              "
+            >
+              Choose file
+              <!-- <span
+                class="p-bot-thumbnail__uploader-guide__text"
+              >
+                Enter
+              </span> -->
+              <input
+                ref="documentInput"
+                type="file"
+                accept="image/*"
+                multiple
+                hidden
+                @input="onFileSelected"
+              />
+
+              <img v-if="carImgUrl" :src="carImgUrl" />
+              <!-- <v-progress-circular
+                class="uploading-animation"
+                indeterminate
+                :size="72"
+                :width="12"
+                color="white"
+              /> -->
+            </div>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -126,14 +165,51 @@
 </template>
 
 <script setup lang="ts">
+import { uploadCarImages } from "~/plugins/src/firebase";
+import { uuid } from "~/untils/string";
+
 const route = useRoute();
+const snackbar = useSnackbar();
+
+const { clearDoc, getDoc, onDragDrop, setFiles } = useUploader();
+
+const uploading = ref(false);
 
 const props = defineProps<{ car: any }>();
+const documentInput = ref();
 
 const emits = defineEmits(["saveCar"]);
 
-const handleSaveCar = () => {
-  emits("saveCar");
+const onDrop = () => {};
+
+const carImgUrl = computed(() => {
+  if (getDoc()) {
+    const url = URL.createObjectURL(getDoc());
+    return url;
+  }
+});
+
+const onInput = async (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  return setFiles(target.files);
+};
+
+const onFileSelected = async (e) => {
+  await onInput(e);
+};
+
+const startupload = async () => {
+  const imageFile = getDoc();
+  const carImgId = uuid();
+  return await uploadCarImages(imageFile, carImgId);
+};
+
+const handleSaveCar = async () => {
+  const carImgFirebaseUrl = await startupload();
+  console.log(carImgFirebaseUrl);
+  if (carImgFirebaseUrl) {
+    emits("saveCar", carImgFirebaseUrl);
+  }
 };
 </script>
 

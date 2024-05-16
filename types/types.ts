@@ -19,6 +19,7 @@ export type Car = {
   wastedFuel: number;
   introduction: string;
   convenient: Array<string>;
+  carImgId: string
 };
 
 export type User = {
