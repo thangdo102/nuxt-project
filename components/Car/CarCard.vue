@@ -3,7 +3,8 @@
     <div class="car-card">
       <div class="car-image">
         <img
-          src="https://images2.thanhnien.vn/zoom/700_438/Uploaded/chicuong/2021_12_13/porsche-911-turbo-5-7236.jpeg"
+        style="width: 266px; height: 166px; object-fit: cover"
+          :src="car.carImgId || 'https://images2.thanhnien.vn/zoom/700_438/Uploaded/chicuong/2021_12_13/porsche-911-turbo-5-7236.jpeg'"
         />
       </div>
 

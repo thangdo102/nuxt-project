@@ -20,6 +20,7 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxt/image",
+    "@nuxtjs/i18n",
     "@pinia/nuxt",
     "nuxt-snackbar",
     (_options, nuxt) => {
@@ -31,7 +32,7 @@ export default defineNuxtConfig({
   snackbar: {
     top: true,
     right: true,
-    duration: 5000
+    duration: 5000,
   },
   vite: {
     ssr: {

@@ -1,6 +1,6 @@
 <template>
   <div class="page-home-wrapper" style="width: 90%">
-    <CarImages style="margin-bottom: 32px" />
+    <CarImages :car="car" style="margin-bottom: 32px" />
 
     <div class="car-info">
       <div class="car-info-left">
